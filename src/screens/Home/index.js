@@ -1,6 +1,6 @@
 // External Dependencies
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View } from 'react-native'
 import styled from 'styled-components/native'
 import ActionButton from 'react-native-action-button';
 
