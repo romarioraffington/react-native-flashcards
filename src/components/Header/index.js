@@ -1,23 +1,27 @@
 // External Dependencies
 import React from 'react'
 import styled from 'styled-components/native'
-import { View, Image, StatusBar, StyleSheet } from 'react-native'
-
-// Our Components
-import Text from '../Styled/components/Text'
-import Header from '../Styled/components/Header'
-import ImageContainer from '../Styled/components/ImageContainer'
+import { View, Text, StatusBar } from 'react-native'
 
 export default () => (
-  <ImageContainer source={require('./images/background.png')}>
-    <View>
-      <StatusBar barStyle="light-content" />
-      <Header> Country <BoldText>Quiz</BoldText></Header>
-      <Text>Select a category or swipe left / right to get started</Text> 
-    </View>
-  </ImageContainer>
+  <Container>
+   <StatusBar barStyle="light-content"/>
+    <Header> Your Decks </Header>
+  </Container>
 )
 
-const BoldText = styled.Text`
-  font-family: 'avenir-heavy'
+// Styled Components
+const Container = styled.View`
+  height: 64
+  margin-bottom: 20
+  align-items: center
+  justify-content: center
+  background-color: #3B48EE
+`
+const Header = styled.Text`
+  font-size: 18
+  font-family: AvenirNext-Medium
+  margin-top: 20
+  color: #FFFFFF
+  font-weight: 500
 `
