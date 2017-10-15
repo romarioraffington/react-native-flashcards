@@ -20,7 +20,7 @@ const Deck = styled.View`
   margin-right: 20
   margin-bottom: 10
   border-radius: 6
-  shadow-radius: 9;
+  shadow-radius: 9
   shadow-opacity: 0.4
   shadow-color: #D9E2E9
   background-color: #FFF
