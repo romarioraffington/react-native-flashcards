@@ -4,6 +4,7 @@ import styled from 'styled-components/native'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 
 // Our Components
+import Home from '../Home'
 import Header from '../../components/Header' 
 
 export default class AddCard extends Component {
@@ -14,11 +15,12 @@ export default class AddCard extends Component {
 
   render() {
     const { question, answer } = this.state
+    const { deck, route, navigator } = this.props
     return (
       <View>
-        <Header />
+        <Header title={route.title}/>
         <Container >
-          <HeaderText>Jamaica</HeaderText>
+          <HeaderText>{deck.name}</HeaderText>  
           <View>
             <StyledTextInput
               autoCapitalize='sentences'
@@ -34,8 +36,12 @@ export default class AddCard extends Component {
             />
             <SaveButton 
               disabled={!question || !answer} 
-              onPress={() => console.log('Save button pressed')}>
-              <SaveButtonText>Save Card</SaveButtonText>
+              onPress={() => navigator.pop({ 
+                component: Home , 
+                title: 'Your Decks', 
+                passProps: { card: { ...this.state }},
+              })}>
+            <SaveButtonText>Save Card</SaveButtonText>
             </SaveButton>
           </View>
         </Container>
@@ -52,14 +58,13 @@ const Container = styled.View`
   align-items: center
 `
 const HeaderText = styled.Text`
-  font-size: 20
+  font-size: 35
   color: #485465
   font-weight: 400
   margin-top: 50
   margin-bottom: 65
   font-family: AvenirNext-Medium
 `
-
 const StyledTextInput = styled.TextInput`
   height: 50
   width: 342
@@ -72,9 +77,8 @@ const StyledTextInput = styled.TextInput`
   padding-left: 13.5
   border-color: #DCE2EE
 `
-
 const SaveButton = styled.TouchableOpacity`
-  margin-top: 50
+  margin-top: 40
   height: 50
   width: 190
   align-self: center
@@ -86,8 +90,6 @@ const SaveButton = styled.TouchableOpacity`
   shadow-color: #3B48EE
   background-color: #3B48EE
 `
-// 
-
 const SaveButtonText = styled.Text`
   font-size: 16
   color: #FFF
