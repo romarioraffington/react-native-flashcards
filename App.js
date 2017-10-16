@@ -3,13 +3,13 @@ import React, { Component } from 'react'
 import styled from 'styled-components/native'
 
 // Our Components
-import Home from './src/screens/Home'
+import Router from './src/components/Router'
 
 export default class App extends Component {
   render() {
     return (
       <Container>
-        <Home />
+        <Router />
       </Container>
     )
   }
