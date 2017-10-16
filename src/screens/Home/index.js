@@ -23,8 +23,7 @@ export default class Home extends Component {
           shadowStyle={{ shadowOpacity: 0.3, shadowRadius: 9 }}
           onPress={() => navigator.push({ 
             component: AddDeck , 
-            title: 'Add a Deck', 
-            backButtonIcon: require('../images/back-button.png'),
+            title: 'Add a Deck',
           })}
         />
       </Container>

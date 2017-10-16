@@ -12,6 +12,9 @@ export default () => (
       title: 'Your Decks',
     }}
      style={{flex: 1}}
-     navigationBarHidden={true}
+     barTintColor='#3B48EE'
+     tintColor='#FFF'
+     titleTextColor='#FFF'
+     shadowHidden={false}
   />
 )
