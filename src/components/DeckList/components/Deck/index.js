@@ -1,20 +1,27 @@
 // External Dependencies
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 
-export default ({ deck }) => (
-  <Deck>
+// Our Components
+import DeckDetails from '../../../../screens/DeckDetails'
+
+export default ({ deck, navigator }) => (
+  <Deck onPress={() => navigator.push({ 
+      component: DeckDetails, 
+      passProps: { deck }
+    })}>
     <Country>{deck.name}</Country>
     <Badge>
       <BadgeText>
-        { deck.size === 0 ? 'No': deck.size } Cards</BadgeText>
+        { deck.size === 0 ? 'No': deck.size } Cards
+      </BadgeText>
     </Badge>
   </Deck>
 )
 
 // Styled Components
-const Deck = styled.View`
+const Deck = styled.TouchableOpacity`
   height: 139
   margin-left: 20
   margin-right: 20
