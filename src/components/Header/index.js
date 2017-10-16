@@ -3,10 +3,10 @@ import React from 'react'
 import styled from 'styled-components/native'
 import { View, Text, StatusBar } from 'react-native'
 
-export default () => (
+export default ({ title }) => (
   <Container>
    <StatusBar barStyle="light-content"/>
-    <Header> Your Decks </Header>
+    <Header>{title}</Header>
   </Container>
 )
 
