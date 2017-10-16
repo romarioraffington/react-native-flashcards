@@ -19,7 +19,7 @@ export default () => (
 
 // Styled Components
 const Container = styled.View`
-  margin-bottom: 23
+  margin-bottom: -30
   flex-direction: row
   align-items: center
   justify-content: center
