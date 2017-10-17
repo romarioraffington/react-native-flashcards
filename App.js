@@ -3,14 +3,10 @@ import React, { Component } from 'react'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import styled from 'styled-components/native'
-import devToolsEnhancer from 'remote-redux-devtools';
 
 // Our Dependencies
+import store from './src/store'
 import Router from './src/components/Router'
-import reducer from './src/reducer' 
-
-// Boostrap store
-const store = createStore(reducer, devToolsEnhancer());
 
 export default class App extends Component {
   render() {
