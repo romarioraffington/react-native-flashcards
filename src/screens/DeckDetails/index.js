@@ -10,29 +10,51 @@ import AddCard from '../AddCard'
 import Header from '../../components/Header' 
 
 export default class DeckDetails extends Component {
+
+  navigateToAddCard = (navigator, deck) => {
+    navigator.push({ 
+      component: AddCard, 
+      title: 'Add a Card', 
+      passProps: { deck },
+    })
+  }
+
   render() {
     const { deck, route, navigator } = this.props
+    const isDeckEmpty = deck.questions.length === 0
     return (
       <MainContainer>
         <Header title={route.title}/>
         <Container>
           <HeaderText>{deck.title}</HeaderText>  
-          <Badge><BadgeText>{deck.questions.length} Cards </BadgeText></Badge>
-          <View>
-            <StartQuiz onPress={() => console.log('Start Quiz Pressed')}>
-              <StartQuizText>Start Quiz</StartQuizText>
-            </StartQuiz>
-          </View>
+          <Badge>
+            <BadgeText>
+              { isDeckEmpty ? 'No' : deck.questions.length } Cards 
+            </BadgeText>
+          </Badge>
+
+            { isDeckEmpty && (
+              <AddCardButton onPress={() => this.navigateToAddCard(navigator, deck)}>
+                <AddCardText>Add Card</AddCardText>
+              </AddCardButton>
+          )}
+
+          { !isDeckEmpty && (
+            <View>
+              <StartQuizBUtton onPress={() => console.log('Start Quiz Pressed')}>
+                <StartQuizText>Start Quiz</StartQuizText>
+              </StartQuizBUtton>
+            </View>
+          )}
         </Container>
-        <ActionButton 
-          buttonColor="#3B48EE" 
-          shadowStyle={{ shadowOpacity: 0.3, shadowRadius: 9 }}
-          onPress={() => navigator.push({ 
-            component: AddCard, 
-            title: 'Add a Card', 
-            passProps: { deck }
-          })}
-        />
+
+        { !isDeckEmpty && (
+          <ActionButton 
+            buttonColor="#3B48EE" 
+            shadowStyle={{ shadowOpacity: 0.3, shadowRadius: 9 }}
+            onPress={() => this.navigateToAddCard(navigator, deck)}
+          />
+        )}
       </MainContainer>
     )
   }
@@ -67,8 +89,8 @@ const BadgeText = styled.Text`
   font-weight: 600
   font-size: 14
 `
-const StartQuiz = styled.TouchableOpacity`
-  margin-top: 50
+const StartQuizBUtton = styled.TouchableOpacity`
+  margin-top: 30
   height: 50
   width: 190
   align-self: center
@@ -84,4 +106,22 @@ const StartQuizText = styled.Text`
   font-size: 16
   color: #FFF
   font-family: Helvetica Neue  
+`
+const AddCardButton = styled.TouchableOpacity`
+height: 50
+width: 190
+margin-top: 30
+align-self: center
+justify-content: center
+align-items: center
+border-radius: 4
+shadow-radius: 3;
+shadow-opacity: 0.1
+shadow-color: #3B48EE
+background-color: #3B48EE
+`
+const AddCardText = styled.Text`
+font-size: 17
+color: #FFF
+font-family: Helvetica Neue  
 `
