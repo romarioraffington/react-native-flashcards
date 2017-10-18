@@ -5,10 +5,9 @@
   "devDependencies": {
     "jest-expo": "^21.0.2",
     "react-native-scripts": "1.5.0",
-    "redux-logger": "^3.0.6",
     "react-test-renderer": "16.0.0-alpha.12",
+    "redux-logger": "^3.0.6",
     "remote-redux-devtools": "^0.5.12"
-    
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -28,7 +27,8 @@
     "react-native-action-button": "^2.8.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-promise-middleware": "^4.4.1",
+    "redux-persist": "^4.10.1",
+    "redux-thunk": "^2.2.0",
     "styled-components": "^2.2.1"
   }
 }

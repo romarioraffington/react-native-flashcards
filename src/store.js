@@ -1,8 +1,10 @@
 // External Dependencies
-import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger'
-import promiseMiddleware from 'redux-promise-middleware';
+import { AsyncStorage } from 'react-native'
 import { composeWithDevTools } from 'remote-redux-devtools'
+import { persistStore, autoRehydrate } from 'redux-persist';
+import { createStore, applyMiddleware, compose } from 'redux'
 
 // Our Dependencies
 import reducer from  './reducer'
@@ -13,9 +15,14 @@ const logger = createLogger({ predicate: (getState, action) => __DEV__ })
 // Apply middlewares
 const enhancer = composeWithDevTools(
   applyMiddleware(
+    thunk,
     logger,
-    promiseMiddleware(),
-  )
+  ),
+  autoRehydrate(),
 )
 
-export default createStore(reducer, {}, enhancer);
+// Create store and periodically to AsyncStorage
+const store = createStore(reducer, {} , enhancer);
+persistStore(store, { storage: AsyncStorage });
+
+export default store
