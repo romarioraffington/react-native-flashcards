@@ -1,13 +1,10 @@
-import { 
-  SAVE_DECK,
-  FETCH_DECKS, 
-} from './constants'
+import * as types from './constants'
 
 export const saveDeck = (title) => ({
-  type: SAVE_DECK,
+  type: types.SAVE_DECK,
   payload: title,
 })
 
-export const fetchDecks = () => ({
-  type: FETCH_DECKS,
+export const getDecks = () => ({
+  type: types.GET_DECKS,
 })

@@ -1,27 +1,32 @@
 // Our Dependencies
-import { decks } from '../../storage/data'
-import { FETCH_DECKS, SAVE_DECK } from './constants';
+import * as types from './constants';
 
 const initialState = {
-  isFetching: false,
-  decks,
-  error: false,
+  decks: {},
 }
 
 export default (state = initialState, action) => {
   switch(action.type) {
-    case FETCH_DECKS:
+    case types.REHYDRATE: 
       return {
         ...state,
-        isFetching: true,
+        decks: {
+          ...state.decks,
+          ...action.payload.deck,
+        }
       }
-    case SAVE_DECK:
+    case types.GET_DECKS:
+      return {
+        ...state,
+      }
+    case types.SAVE_DECK:
       return {
         ...state,
         decks: {
           ...state.decks,
           [action.payload]: {
-            title: action.payload
+            title: action.payload,
+            questions: [],
           }
         }
       }
