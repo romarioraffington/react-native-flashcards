@@ -16,8 +16,8 @@ export default class DeckDetails extends Component {
       <MainContainer>
         <Header title={route.title}/>
         <Container>
-          <HeaderText>{deck.name}</HeaderText>  
-          <Badge><BadgeText>{deck.size} Cards </BadgeText></Badge>
+          <HeaderText>{deck.title}</HeaderText>  
+          <Badge><BadgeText>{deck.questions.length} Cards </BadgeText></Badge>
           <View>
             <StartQuiz onPress={() => console.log('Start Quiz Pressed')}>
               <StartQuizText>Start Quiz</StartQuizText>

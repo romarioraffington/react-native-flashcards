@@ -6,11 +6,11 @@ import styled from 'styled-components/native'
 // Our Components
 import Deck from './components/Deck'
 
-export default ({ navigator }) => (
+export default ({ decks, navigator }) => (
   <Container>
     <FlatList 
-      data={data}
-      keyExtractor = {({ id }) => id }
+      data={decks}
+      keyExtractor = {({ title }) => title }
       renderItem={({ item }) => <Deck navigator={navigator} deck={item} />}
     />
   </Container>

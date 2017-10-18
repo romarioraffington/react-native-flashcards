@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
         ...state,
         decks: {
           ...state.decks,
-          ...action.payload.deck,
+          ...action.payload.deck.decks,
         }
       }
     case types.GET_DECKS:

@@ -1,6 +1,8 @@
 // External Dependencies
 import React, { Component } from 'react'
+import _ from 'lodash'
 import { View } from 'react-native'
+import { connect } from 'react-redux'
 import styled from 'styled-components/native'
 import ActionButton from 'react-native-action-button';
 
@@ -10,14 +12,21 @@ import Header from '../../components/Header'
 import DeckList from '../../components/DeckList' 
 import StatusCard from '../../components/StatusCard' 
 
-export default class Home extends Component {
+// Actions 
+import { getDecks } from '../../models/Deck/actions'
+
+class Home extends Component {
+  componentDidMount () {
+    this.props.dispatch(getDecks())
+  }
+
   render() {
-   const { route, navigator } = this.props
+   const { decks, route, navigator } = this.props
     return (
       <Container>
         <Header title={route.title} />
         <StatusCard />
-        <DeckList navigator={navigator} />
+        <DeckList decks={decks} navigator={navigator} />
         <ActionButton 
           buttonColor="#3B48EE" 
           shadowStyle={{ shadowOpacity: 0.3, shadowRadius: 9 }}
@@ -30,6 +39,22 @@ export default class Home extends Component {
     )
   }
 }
+
+
+const mapStateToProps = ({ deck }) => {
+  const decks = deck.decks
+
+  return {
+    // Convert decks object to an array
+    // to be rendered by the FlatList in 
+    // the DeckList component
+    decks: Object.keys(decks).map(key => decks[key])
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(Home)
 
 // Styled Components
 const Container = styled.View`

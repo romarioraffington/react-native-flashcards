@@ -9,12 +9,15 @@ import DeckDetails from '../../../../screens/DeckDetails'
 export default ({ deck, navigator }) => (
   <Deck onPress={() => navigator.push({ 
       component: DeckDetails, 
-      passProps: { deck }
+      passProps: { deck },
     })}>
-    <Country>{deck.name}</Country>
+    <Country>{deck.title}</Country>
     <Badge>
       <BadgeText>
-        { deck.size === 0 ? 'No': deck.size } Cards
+        { deck.questions.length === 0 
+          ? 'No'
+          : deck.questions.length 
+        } Cards
       </BadgeText>
     </Badge>
   </Deck>

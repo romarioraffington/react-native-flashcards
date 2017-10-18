@@ -1,21 +1,25 @@
 // External Dependencies
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components/native'
 import { SimpleLineIcons } from '@expo/vector-icons'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 
 // Our Components
 import Home from '../Home'
-import Header from '../../components/Header' 
+import Header from '../../components/Header'
 
-export default class AddDeck extends Component {
+// Our Actions
+import { saveDeck } from '../../models/Deck/actions'
+
+class AddDeck extends Component {
   state = {
-    name: '',
+    title: '',
   }
 
   render() {
-    const { name } = this.state
-    const { route, navigator } = this.props
+    const { title } = this.state
+    const { route, navigator, dispatch } = this.props
     return (
       <View>
         <Header title={route.title}/>
@@ -25,16 +29,21 @@ export default class AddDeck extends Component {
             <StyledTextInput
               autoCapitalize='words'
               placeholder='Enter the name of the new deck'
-              onChangeText={name => this.setState({ name })}
-              value={name}
+              onChangeText={title => this.setState({ title })}
+              value={title}
             />
             <SaveButton 
-              disabled={!name} 
-              onPress={() => navigator.pop({ 
-                component: Home , 
-                title: 'Your Decks', 
-                passProps: { deck: name },
-              })}>
+              disabled={!title} 
+              onPress={() => {
+                // Dispatch Action
+                dispatch(saveDeck(title))
+
+                // Pop to main screen
+                navigator.pop({ 
+                  component: Home , 
+                  title: 'Your Decks',
+                })}
+              }>
             <SaveButtonText>Save Deck</SaveButtonText>
             </SaveButton>
           </FormContainer>
@@ -43,6 +52,8 @@ export default class AddDeck extends Component {
     )
   }
 }
+
+export default connect()(AddDeck)
 
 // Styled Components
 const Container = styled.View`
