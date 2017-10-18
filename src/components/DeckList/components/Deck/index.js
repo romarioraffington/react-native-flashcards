@@ -31,7 +31,7 @@ const Deck = styled.TouchableOpacity`
   margin-bottom: 10
   border-radius: 6
   shadow-radius: 9
-  shadow-opacity: 0.4
+  shadow-opacity: 0.5
   shadow-color: #D9E2E9
   background-color: #FFF
   align-items: center
