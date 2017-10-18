@@ -27,14 +27,21 @@ class Home extends Component {
         <Header title={route.title} />
         <StatusCard />
         <DeckList decks={decks} navigator={navigator} />
-        <ActionButton 
-          buttonColor="#3B48EE" 
-          shadowStyle={{ shadowOpacity: 0.3, shadowRadius: 9 }}
-          onPress={() => navigator.push({ 
-            component: AddDeck , 
-            title: 'Add a Deck',
-          })}
-        />
+
+        {/* Do not render Add Deck button if 
+            No decks are available as the DeckList 
+            component will render its own Add Deck button 
+        */}
+        { decks.length !== 0 && (
+          <ActionButton 
+            buttonColor="#3B48EE" 
+            shadowStyle={{ shadowOpacity: 0.3, shadowRadius: 9 }}
+            onPress={() => navigator.push({ 
+              component: AddDeck , 
+              title: 'Add a Deck',
+            })}
+          />
+        )}
       </Container>
     )
   }
@@ -43,7 +50,7 @@ class Home extends Component {
 
 const mapStateToProps = ({ deck }) => {
   const decks = deck.decks
-
+  
   return {
     // Convert decks object to an array
     // to be rendered by the FlatList in 
@@ -59,4 +66,5 @@ export default connect(
 // Styled Components
 const Container = styled.View`
   flex: 1
+  background-color: #FEFEFE
 `

@@ -8,11 +8,12 @@ const initialState = {
 export default (state = initialState, action) => {
   switch(action.type) {
     case types.REHYDRATE: 
+      const { decks } = action.payload.deck || {}
       return {
         ...state,
         decks: {
           ...state.decks,
-          ...action.payload.deck.decks,
+          ...decks,
         }
       }
     case types.GET_DECKS:
