@@ -42,9 +42,10 @@ const Country = styled.Text`
   font-size: 24
 `
 const Badge = styled.View`
-  width: 57
   height: 22
   border-radius: 4
+  padding-left: 3
+  padding-right: 3
   opacity: 0.6
   align-items: center
   justify-content: center

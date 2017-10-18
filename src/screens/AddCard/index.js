@@ -36,11 +36,13 @@ export default class AddCard extends Component {
             />
             <SaveButton 
               disabled={!question || !answer} 
-              onPress={() => navigator.pop({ 
-                component: Home , 
-                title: 'Your Decks', 
-                passProps: { card: { ...this.state }},
-              })}>
+              onPress={() => {
+                navigator.pop({ 
+                  component: Home , 
+                  title: 'Your Decks', 
+                  passProps: { card: { ...this.state }},
+                })}
+              }>
             <SaveButtonText>Save Card</SaveButtonText>
             </SaveButton>
           </View>
