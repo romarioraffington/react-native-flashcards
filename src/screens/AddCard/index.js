@@ -12,15 +12,15 @@ export default class AddCard extends Component {
     question: '',
     answer: '',
   }
-
+  
   render() {
     const { question, answer } = this.state
-    const { deck, route, navigator } = this.props
+    const { title } = this.props
     return (
       <View>
-        <Header title={route.title}/>
+        <Header />
         <Container >
-          <HeaderText>{deck.name}</HeaderText>  
+          <HeaderText>{title}</HeaderText>  
           <View>
             <StyledTextInput
               autoCapitalize='sentences'
@@ -37,11 +37,13 @@ export default class AddCard extends Component {
             <SaveButton 
               disabled={!question || !answer} 
               onPress={() => {
-                navigator.pop({ 
-                  component: Home , 
-                  title: 'Your Decks', 
-                  passProps: { card: { ...this.state }},
-                })}
+                this.props.saveCard({
+                  title,
+                  ...this.state,
+                })
+
+                this.props.navigator.pop()
+                }
               }>
             <SaveButtonText>Save Card</SaveButtonText>
             </SaveButton>
@@ -64,7 +66,7 @@ const HeaderText = styled.Text`
   color: #485465
   font-weight: 400
   margin-top: 50
-  margin-bottom: 65
+  margin-bottom: 50
   font-family: AvenirNext-Medium
 `
 const StyledTextInput = styled.TextInput`
@@ -80,7 +82,7 @@ const StyledTextInput = styled.TextInput`
   border-color: #DCE2EE
 `
 const SaveButton = styled.TouchableOpacity`
-  margin-top: 40
+  margin-top: 35
   height: 50
   width: 190
   align-self: center

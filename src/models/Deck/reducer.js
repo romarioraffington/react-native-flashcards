@@ -31,6 +31,22 @@ export default (state = initialState, action) => {
           }
         }
       }
+
+    case types.SAVE_CARD:
+      const { title, question, answer } = action.payload
+      return {
+        ...state,
+        decks: {
+          ...state.decks,
+          [title]: {
+           ...state.decks[title],
+            questions: state.decks[title].questions.concat({
+              question,
+              answer,
+            })
+          }
+        }
+      }
     default: {
       return {
         ...state
