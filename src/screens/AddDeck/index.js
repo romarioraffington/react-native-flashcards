@@ -9,20 +9,16 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import Home from '../Home'
 import Header from '../../components/Header'
 
-// Our Actions
-import { saveDeck } from '../../models/Deck/actions'
-
-class AddDeck extends Component {
+export default class AddDeck extends Component {
   state = {
     title: '',
   }
 
   render() {
     const { title } = this.state
-    const { route, navigator, dispatch } = this.props
     return (
       <View>
-        <Header title={route.title}/>
+        <Header/>
         <Container>
           <FormContainer>
             <SimpleLineIcons name='notebook' size={80} color='#3B48EE' />
@@ -35,14 +31,9 @@ class AddDeck extends Component {
             <SaveButton 
               disabled={!title} 
               onPress={() => {
-                // Dispatch Action
-                dispatch(saveDeck(title))
-
-                // Pop to main screen
-                navigator.pop({ 
-                  component: Home , 
-                  title: 'Your Decks',
-                })}
+                this.props.saveDeck(title)
+                this.props.navigator.pop()
+                }
               }>
             <SaveButtonText>Save Deck</SaveButtonText>
             </SaveButton>
@@ -52,8 +43,6 @@ class AddDeck extends Component {
     )
   }
 }
-
-export default connect()(AddDeck)
 
 // Styled Components
 const Container = styled.View`
