@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import styled from 'styled-components/native'
 import { SimpleLineIcons } from '@expo/vector-icons'
 import ActionButton from 'react-native-action-button';
-import { View, TouchableOpacity, Text } from 'react-native'
+import { View, TouchableOpacity, Text, AlertIOS } from 'react-native'
 
 // Our Components
 import AddDeck from '../AddDeck'
@@ -79,9 +79,28 @@ const mapDispatchToProps = (dispatch => (
   }, dispatch)
 ))
 
+const mergeProps = ({ decks }, { getDecks, saveDeck }, ownProps) => ({
+  ...ownProps,
+  decks,
+  getDecks,
+  saveDeck: (title) =>  {
+    const isPresent = decks.find(d => d.title === title)  
+    
+    // Do not save deck if it 
+    // already exists in the state
+    isPresent 
+    ? AlertIOS.alert(
+        'Try Again',
+        `${title} deck already exists.`
+      )
+    : saveDeck(title)
+  }
+})
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
+  mergeProps
 )(Home)
 
 // Styled Components
