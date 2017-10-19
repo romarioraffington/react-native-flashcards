@@ -22,7 +22,7 @@ const enhancer = composeWithDevTools(
 )
 
 // Create store and periodically to AsyncStorage
-const store = createStore(reducer, {} , enhancer);
+const store = createStore(reducer, {}, enhancer);
 persistStore(store, { storage: AsyncStorage });
 
 export default store
