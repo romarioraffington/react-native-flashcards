@@ -1,5 +1,7 @@
 // External Dependencies
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import styled from 'styled-components/native'
 import ActionButton from 'react-native-action-button';
 import { View, Text, TouchableOpacity } from 'react-native'
@@ -9,22 +11,25 @@ import Home from '../Home'
 import AddCard from '../AddCard'
 import Header from '../../components/Header' 
 
-export default class DeckDetails extends Component {
+// Our Actions
+import { saveCard } from '../../models/Deck/actions'
 
-  navigateToAddCard = (navigator, deck) => {
+class DeckDetails extends Component {
+
+  navigateToAddCard(navigator, { title }, saveCard) {
     navigator.push({ 
       component: AddCard, 
       title: 'Add a Card', 
-      passProps: { deck },
+      passProps: { title, saveCard },
     })
   }
 
   render() {
-    const { deck, route, navigator } = this.props
+    const { deck, navigator, saveCard } = this.props
     const isDeckEmpty = deck.questions.length === 0
     return (
       <MainContainer>
-        <Header title={route.title}/>
+        <Header/>
         <Container>
           <HeaderText>{deck.title}</HeaderText>  
           <Badge>
@@ -34,7 +39,7 @@ export default class DeckDetails extends Component {
           </Badge>
 
             { isDeckEmpty && (
-              <AddCardButton onPress={() => this.navigateToAddCard(navigator, deck)}>
+              <AddCardButton onPress={() => this.navigateToAddCard(navigator, deck, saveCard )}>
                 <AddCardText>Add Card</AddCardText>
               </AddCardButton>
           )}
@@ -52,13 +57,29 @@ export default class DeckDetails extends Component {
           <ActionButton 
             buttonColor="#3B48EE" 
             shadowStyle={{ shadowOpacity: 0.3, shadowRadius: 9 }}
-            onPress={() => this.navigateToAddCard(navigator, deck)}
+            onPress={() => this.navigateToAddCard(navigator, deck, saveCard)}
           />
         )}
       </MainContainer>
     )
   }
 }
+
+const mapStateToProps = ({ deck }, { title }) => ({
+  deck: deck.decks[title],
+})
+
+const mapDispatchToProps = (dispatch => (
+  bindActionCreators({
+    saveCard,
+  }, dispatch)
+))
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(DeckDetails)
+
 
 // Styled Components
 const MainContainer = styled.View`

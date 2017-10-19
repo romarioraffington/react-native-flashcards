@@ -9,7 +9,7 @@ import DeckDetails from '../../../../screens/DeckDetails'
 export default ({ deck, navigator }) => (
   <Deck onPress={() => navigator.push({ 
       component: DeckDetails, 
-      passProps: { deck },
+      passProps: { title: deck.title },
     })}>
     <Country>{deck.title}</Country>
     <Badge>
