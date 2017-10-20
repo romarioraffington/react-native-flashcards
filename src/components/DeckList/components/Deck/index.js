@@ -17,7 +17,8 @@ export default ({ deck, navigator }) => (
         { deck.questions.length === 0 
           ? 'No'
           : deck.questions.length 
-        } Cards
+        } 
+        { deck.questions.length === 1 ?  ' Card' : ' Cards' }
       </BadgeText>
     </Badge>
   </Deck>
@@ -43,10 +44,12 @@ const Country = styled.Text`
 `
 const Badge = styled.View`
   height: 22
+  opacity: 0.6
+  padding-top: 5
+  padding-bottom: 5
   border-radius: 4
   padding-left: 3
   padding-right: 3
-  opacity: 0.6
   align-items: center
   justify-content: center
   background-color: #A8B4C4
