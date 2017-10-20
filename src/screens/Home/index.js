@@ -84,8 +84,8 @@ const mergeProps = ({ decks }, { getDecks, saveDeck }, ownProps) => ({
   decks,
   getDecks,
   saveDeck: (title) =>  {
-    const isPresent = decks.find(d => d.title === title)  
-    
+    const isPresent = !! decks.find(d => d.title === title)  
+
     // Do not save deck if it 
     // already exists in the state
     isPresent 
