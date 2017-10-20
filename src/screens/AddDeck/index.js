@@ -29,10 +29,7 @@ export default class AddDeck extends Component {
             />
             <CreateDeck 
               disabled={!title} 
-              onPress={() => {
-                this.props.saveDeck(title)
-                this.props.navigator.pop()
-              }}>
+              onPress={() => this.props.saveDeck(title)}>
             <CreateDeckText>Create Deck</CreateDeckText>
             </CreateDeck>
           </FormContainer>

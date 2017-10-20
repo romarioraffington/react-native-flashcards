@@ -86,14 +86,14 @@ const mergeProps = ({ decks }, { getDecks, saveDeck }, ownProps) => ({
   saveDeck: (title) =>  {
     const isPresent = !! decks.find(d => d.title === title)  
 
-    // Do not save deck if it 
-    // already exists in the state
-    isPresent 
-    ? AlertIOS.alert(
-        'Try Again',
-        `${title} deck already exists.`
-      )
-    : saveDeck(title)
+    // Do not save deck if it already 
+    // exists in the state
+    if (isPresent ) {
+      AlertIOS.alert( 'Try Again', `${title} deck already exists.`)
+    } else {
+      saveDeck(title)
+      ownProps.navigator.pop()
+    }
   }
 })
 
