@@ -9,6 +9,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 // Our Components
 import Home from '../Home'
 import AddCard from '../AddCard'
+import Quiz from '../Quiz'
 import Header from '../../components/Header' 
 
 // Our Actions
@@ -34,7 +35,8 @@ class DeckDetails extends Component {
           <HeaderText>{deck.title}</HeaderText>  
           <Badge>
             <BadgeText>
-              { isDeckEmpty ? 'No' : deck.questions.length } Cards 
+              { isDeckEmpty ? 'No' : deck.questions.length }
+              { deck.questions.length === 1 ?  ' Card' : ' Cards' } 
             </BadgeText>
           </Badge>
 
@@ -46,7 +48,13 @@ class DeckDetails extends Component {
 
           { !isDeckEmpty && (
             <View>
-              <StartQuizBUtton onPress={() => console.log('Start Quiz Pressed')}>
+              <StartQuizBUtton onPress={() => {
+                navigator.push({
+                  component: Quiz,
+                  title: 'Quiz',
+                  passProps: { deck },
+                })
+              }}>
                 <StartQuizText>Start a Quiz</StartQuizText>
               </StartQuizBUtton>
             </View>
@@ -94,13 +102,15 @@ const HeaderText = styled.Text`
   font-size: 40
   color: #485465
   margin-top: 50
-  font-family: Helvetica Neue  
 `
 const Badge = styled.View`
-  width: 67
-  height: 32
-  border-radius: 4
+  height: 25
   opacity: 0.6
+  padding-left: 5
+  padding-right: 5
+  padding-top: 5
+  padding-bottom: 5
+  border-radius: 4
   align-items: center
   justify-content: center
   background-color: #A8B4C4
@@ -108,7 +118,7 @@ const Badge = styled.View`
 const BadgeText = styled.Text`
   color: #FFF
   font-weight: 600
-  font-size: 14
+  font-size: 12
 `
 const StartQuizBUtton = styled.TouchableOpacity`
   margin-top: 30
