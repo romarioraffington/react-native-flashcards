@@ -67,7 +67,7 @@ const HeaderText = styled.Text`
   font-weight: 400
   margin-top: 50
   margin-bottom: 50
-  font-family: AvenirNext-Medium
+  font-family: Helvetica Neue 
 `
 const StyledTextInput = styled.TextInput`
   height: 50
