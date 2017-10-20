@@ -6,7 +6,6 @@ import { SimpleLineIcons } from '@expo/vector-icons'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 
 // Our Components
-import Home from '../Home'
 import Header from '../../components/Header'
 
 export default class AddDeck extends Component {
@@ -28,15 +27,14 @@ export default class AddDeck extends Component {
               onChangeText={title => this.setState({ title })}
               value={title}
             />
-            <SaveButton 
+            <CreateDeck 
               disabled={!title} 
               onPress={() => {
                 this.props.saveDeck(title)
                 this.props.navigator.pop()
-                }
-              }>
-            <SaveButtonText>Save Deck</SaveButtonText>
-            </SaveButton>
+              }}>
+            <CreateDeckText>Create Deck</CreateDeckText>
+            </CreateDeck>
           </FormContainer>
         </Container>
       </View>
@@ -62,7 +60,7 @@ const StyledTextInput = styled.TextInput`
   padding-left: 13.5
   border-color: #DCE2EE
 `
-const SaveButton = styled.TouchableOpacity`
+const CreateDeck = styled.TouchableOpacity`
   margin-top: 40
   height: 50
   width: 190
@@ -75,7 +73,7 @@ const SaveButton = styled.TouchableOpacity`
   shadow-color: #3B48EE
   background-color: #3B48EE
 `
-const SaveButtonText = styled.Text`
+const CreateDeckText = styled.Text`
   font-size: 16
   color: #FFF
   font-family: Helvetica Neue  

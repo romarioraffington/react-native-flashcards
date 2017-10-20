@@ -47,7 +47,7 @@ class DeckDetails extends Component {
           { !isDeckEmpty && (
             <View>
               <StartQuizBUtton onPress={() => console.log('Start Quiz Pressed')}>
-                <StartQuizText>Start Quiz</StartQuizText>
+                <StartQuizText>Start a Quiz</StartQuizText>
               </StartQuizBUtton>
             </View>
           )}

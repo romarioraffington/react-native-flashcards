@@ -34,7 +34,7 @@ export default class AddCard extends Component {
               onChangeText={answer => this.setState({ answer })}
               value={answer}
             />
-            <SaveButton 
+            <CreateQuestion 
               disabled={!question || !answer} 
               onPress={() => {
                 this.props.saveCard({
@@ -45,8 +45,8 @@ export default class AddCard extends Component {
                 this.props.navigator.pop()
                 }
               }>
-            <SaveButtonText>Save Card</SaveButtonText>
-            </SaveButton>
+            <CreateQuestionText>Create New Question</CreateQuestionText>
+            </CreateQuestion>
           </View>
         </Container>
       </View>
@@ -81,7 +81,7 @@ const StyledTextInput = styled.TextInput`
   padding-left: 13.5
   border-color: #DCE2EE
 `
-const SaveButton = styled.TouchableOpacity`
+const CreateQuestion = styled.TouchableOpacity`
   margin-top: 35
   height: 50
   width: 190
@@ -94,7 +94,7 @@ const SaveButton = styled.TouchableOpacity`
   shadow-color: #3B48EE
   background-color: #3B48EE
 `
-const SaveButtonText = styled.Text`
+const CreateQuestionText = styled.Text`
   font-size: 16
   color: #FFF
   font-family: Helvetica Neue  
