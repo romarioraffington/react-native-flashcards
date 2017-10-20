@@ -7,24 +7,52 @@ import { View, Text, TouchableOpacity, Button } from 'react-native'
 import Header from '../../components/Header'
 
 export default class Quiz extends Component {
+  state = {
+    correctAnswers: 0,
+    showAnswer: false,
+    currentQuestionIndex: 0,
+  }
+
   render() {
+    const { deck } = this.props
+    const { currentQuestionIndex, showAnswer, correctAnswers } = this.state
+    console.log(this.state)
+
+    // Pull vars to display 
+    const questionsLength = deck.questions.length
+    const currentQuestion = deck.questions[currentQuestionIndex].question
+    const currentAnswer = deck.questions[currentQuestionIndex].answer
+    const currentQuestionNumber = currentQuestionIndex + 1
+
     return (
       <MainContainer>
         <Header/>
-        <QuestionCountText>2/4</QuestionCountText>
+        <QuestionCountText>{currentQuestionNumber} / {questionsLength}</QuestionCountText>
         <QuestionContainer>
-          <HeaderText>Does native work with Android?</HeaderText>
+          <HeaderText>
+            { showAnswer ? currentAnswer: currentQuestion}
+          </HeaderText>
           <ViewAnswerButton
-            onPress={() => console.log('Learn more button pressed')}
-            title="View the answer"
+            onPress={() => this.setState({ showAnswer: !showAnswer })}
+            title={ showAnswer ? "View the question" : "View the answer" }
             color="#3B48EE"
             accessibilityLabel="View the answer to the question"
           />
         <ButtonContainer>
-          <AnswerButton onPress={() => console.log('Incorrect button pressed')}>
+          <AnswerButton onPress={() => {
+              this.setState({ 
+                currentQuestionIndex: currentQuestionIndex + 1,
+              })
+            }}>
             <ButtonText>Incorrect</ButtonText>
           </AnswerButton>
-          <AnswerButton primary onPress={() => console.log('Correct button pressed')}>
+          <AnswerButton primary
+            onPress={() => {
+              this.setState({ 
+                currentQuestionIndex: currentQuestionIndex + 1,
+                correctAnswers: correctAnswers + 1 
+              })
+            }}>
             <ButtonText>Correct</ButtonText>
           </AnswerButton>
         </ButtonContainer>
@@ -41,7 +69,7 @@ const MainContainer = styled.View`
 `
 const QuestionContainer = styled.View`
   flex: 1
-  margin-top: 140
+  margin-top: 100
   align-items: center
 `
 const QuestionCountText = styled.Text`
@@ -55,14 +83,14 @@ const HeaderText = styled.Text`
   font-size: 35
   color: #485465
   font-weight: 300
-  margin-bottom: 20
+  margin-bottom: 10
   text-align: center
 `
 const ViewAnswerButton = styled.Button`
   font-size: 17
 `
 const ButtonContainer = styled.View`
-  margin-top: 75
+  margin-top: 60
   flex-direction: row
 `
 const AnswerButton = styled.TouchableOpacity`
