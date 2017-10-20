@@ -22,7 +22,7 @@ export default class AddDeck extends Component {
           <FormContainer>
             <SimpleLineIcons name='notebook' size={80} color='#3B48EE' />
             <StyledTextInput
-              autoCapitalize='words'
+              autoCapitalize='sentences'
               placeholder='Enter the name of the new deck'
               onChangeText={title => this.setState({ title })}
               value={title}
