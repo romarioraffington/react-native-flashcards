@@ -40,10 +40,10 @@ class DeckDetails extends Component {
             </BadgeText>
           </Badge>
 
-            { isDeckEmpty && (
-              <AddCardButton onPress={() => this.navigateToAddCard(navigator, deck, saveCard )}>
-                <AddCardText>Add Card</AddCardText>
-              </AddCardButton>
+          { isDeckEmpty && (
+            <AddCardButton onPress={() => this.navigateToAddCard(navigator, deck, saveCard )}>
+              <AddCardText>Add Card</AddCardText>
+            </AddCardButton>
           )}
 
           { !isDeckEmpty && (
