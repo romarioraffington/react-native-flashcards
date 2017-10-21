@@ -44,7 +44,6 @@ export default class QuizComplete extends Component {
   }
 }
 
-
 // Styled Components
 const MainContainer = styled.View`
   flex: 1
