@@ -3,19 +3,23 @@ import React from 'react'
 import styled from 'styled-components/native'
 import { View, Text, StatusBar } from 'react-native'
 
-export default () => (
-  <Container>
-    <View>
-      <StatusText> Last Quiz Taken</StatusText>
-      <HighlightText blue> Jamaica </HighlightText>
-    </View>
-    <Separator/>
-    <View>
-      <StatusText> Best Score</StatusText>
-      <HighlightText pink> 85% </HighlightText>
-    </View>
-  </Container>
-)
+export default ({ status }) => {
+  const { lastQuizTaken, lastScore } = status
+  
+  return (
+    <Container>
+      <View>
+        <StatusText> Last Quiz Taken</StatusText>
+        {<HighlightText blue>{lastQuizTaken ? lastQuizTaken : 'None' }</HighlightText>}
+      </View>
+      <Separator/>
+      <View>
+        <StatusText> Last Score</StatusText>
+        {<HighlightText pink>{lastScore === "" ? 'None' : lastScore + '%'}</HighlightText>}
+      </View>
+    </Container>
+  )
+}
 
 // Styled Components
 const Container = styled.View`

@@ -15,18 +15,20 @@ import StatusCard from '../../components/StatusCard'
 
 // Actions 
 import { getDecks, saveDeck } from '../../models/Deck/actions'
+import { getStatus } from '../../models/Status/actions'
 
 class Home extends Component {
   componentDidMount () {
     this.props.getDecks()
+    this.props.getStatus()
   }
 
   render() {
-   const { decks, navigator, saveDeck } = this.props
+   const { decks, navigator, saveDeck, status } = this.props
     return (
       <Container>
         <Header />
-        <StatusCard />
+        <StatusCard status={status} />
         <DeckList decks={decks} navigator={navigator} />
 
         { decks.length !== 0 && (
@@ -61,14 +63,15 @@ class Home extends Component {
 }
 
 
-const mapStateToProps = ({ deck }) => {
+const mapStateToProps = ({ deck, status }) => {
   const decks = deck.decks
   
   return {
     // Convert decks object to an array
     // to be rendered by the FlatList in 
     // the DeckList component
-    decks: Object.keys(decks).map(key => decks[key])
+    decks: Object.keys(decks).map(key => decks[key]),
+    status,
   }
 }
 
@@ -76,13 +79,15 @@ const mapDispatchToProps = (dispatch => (
   bindActionCreators({
     getDecks,
     saveDeck,
+    getStatus,
   }, dispatch)
 ))
 
-const mergeProps = ({ decks }, { getDecks, saveDeck }, ownProps) => ({
-  ...ownProps,
+const mergeProps = ({ decks, ...stateProps }, { saveDeck, ...dispatchProps}, ownProps) => ({
   decks,
-  getDecks,
+  ...ownProps,
+  ...stateProps,
+  ...dispatchProps,
   saveDeck: (title) =>  {
     const isPresent = !! decks.find(d => d.title === title)  
 
