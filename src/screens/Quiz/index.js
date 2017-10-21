@@ -36,6 +36,7 @@ export default class Quiz extends Component {
     navigator.push({
       component: QuizComplete,
       title: "Quiz Completed",
+      leftButtonTitle: ' ',
       passProps: { 
         deck,
         score,
