@@ -27,12 +27,20 @@ export default class Quiz extends Component {
     // and the score is updated
     if (isLastQuestion && isScoreUpdated) {
       const score = (correctAnswers / deckLength) * 100
+
+      // Update Status
+      this.props.saveStatus({
+        lastQuizTaken: deck.title ,
+        lastScore: score,
+      })
+
+      // Navigate to QuizComplete Screen
       this.navigateToQuizComplete(score)
     }
   }
 
   navigateToQuizComplete = (score) => {
-    const { navigator, deck } = this.props
+    const { navigator, deck, saveStatus } = this.props
 
     navigator.push({
       component: QuizComplete,
@@ -43,6 +51,7 @@ export default class Quiz extends Component {
       passProps: { 
         deck,
         score,
+        saveStatus,
       }
     })
   }

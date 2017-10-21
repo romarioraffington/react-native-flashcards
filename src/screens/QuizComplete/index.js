@@ -10,7 +10,7 @@ import Header from '../../components/Header'
 
 export default class QuizComplete extends Component {
   render() {
-    const { score, navigator, deck } = this.props
+    const { score, navigator, deck, saveStatus } = this.props
     
     return (
       <MainContainer>
@@ -23,7 +23,7 @@ export default class QuizComplete extends Component {
             navigator.push({
               component: Quiz, 
               title: 'Quiz',
-              passProps: { deck },
+              passProps: { deck, saveStatus },
             })
           }>
             <ButtonText>Restart Quiz</ButtonText>

@@ -14,6 +14,7 @@ import Header from '../../components/Header'
 
 // Our Actions
 import { saveCard } from '../../models/Deck/actions'
+import { saveStatus } from '../../models/Status/actions'
 
 class DeckDetails extends Component {
 
@@ -26,7 +27,7 @@ class DeckDetails extends Component {
   }
 
   render() {
-    const { deck, navigator, saveCard } = this.props
+    const { deck, navigator, saveCard, saveStatus } = this.props
     const isDeckEmpty = deck.questions.length === 0
     return (
       <MainContainer>
@@ -52,7 +53,7 @@ class DeckDetails extends Component {
                 navigator.push({
                   component: Quiz,
                   title: 'Quiz',
-                  passProps: { deck },
+                  passProps: { deck, saveStatus },
                 })
               }}>
                 <StartQuizText>Start a Quiz</StartQuizText>
@@ -80,6 +81,7 @@ const mapStateToProps = ({ deck }, { title }) => ({
 const mapDispatchToProps = (dispatch => (
   bindActionCreators({
     saveCard,
+    saveStatus
   }, dispatch)
 ))
 
