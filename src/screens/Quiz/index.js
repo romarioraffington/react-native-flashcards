@@ -1,29 +1,85 @@
 // External Dependencies
 import React, { Component } from 'react'
+import clone from 'clone'
 import styled from 'styled-components/native'
 import { View, Text, TouchableOpacity, Button } from 'react-native'
 
 // Our Components
 import Header from '../../components/Header'
+import QuizComplete from '../QuizComplete'
 
 export default class Quiz extends Component {
   state = {
     correctAnswers: 0,
+    incorrectAnswers: 0,
     showAnswer: false,
     currentQuestionIndex: 0,
   }
 
+  componentWillUpdate({ deck }, { correctAnswers, incorrectAnswers, currentQuestionIndex }) {
+    const deckLength = deck.questions.length
+    const isLastQuestion =  deckLength === (currentQuestionIndex + 1)
+    const isScoreUpdated = (correctAnswers + incorrectAnswers) === deckLength
+
+    // Only navigate to the completeQuiz screen 
+    // if the last question is being displayed
+    // and the score is updated
+    if (isLastQuestion && isScoreUpdated) {
+      const score = (correctAnswers / deckLength) * 100
+      this.navigateToQuizComplete(score)
+    }
+  }
+
+  navigateToQuizComplete = (score) => {
+    const { navigator, deck } = this.props
+
+    navigator.push({
+      component: QuizComplete,
+      title: "Quiz Completed",
+      passProps: { 
+        deck,
+        score,
+      }
+    })
+  }
+
+  navigateToNextQuestion = () => {
+    this.setState(({ currentQuestionIndex }) => ({
+      currentQuestionIndex: currentQuestionIndex + 1, 
+    }))
+  }
+
+  incrementCorrectAnswers = () => {
+    this.setState(({ correctAnswers }) => ({
+      correctAnswers: correctAnswers + 1,
+    }))
+  }
+
+  incrementInCorrectAnswers = () => (
+    this.setState(({ incorrectAnswers }) => ({
+      incorrectAnswers: incorrectAnswers + 1,
+    }))
+  )
+
   render() {
     const { deck } = this.props
-    const { currentQuestionIndex, showAnswer, correctAnswers } = this.state
-    console.log(this.state)
+    const { 
+      showAnswer, 
+      currentQuestionIndex,
+      correctAnswers, 
+      incorrectAnswers,
+    } = this.state
 
-    // Pull vars to display 
+    // Grab variables to display
     const questionsLength = deck.questions.length
     const currentQuestion = deck.questions[currentQuestionIndex].question
     const currentAnswer = deck.questions[currentQuestionIndex].answer
     const currentQuestionNumber = currentQuestionIndex + 1
 
+    // Determine if we are at
+    // the last question
+    const isLastQuestion = questionsLength === currentQuestionNumber
+    
     return (
       <MainContainer>
         <Header/>
@@ -34,25 +90,26 @@ export default class Quiz extends Component {
           </HeaderText>
           <ViewAnswerButton
             onPress={() => this.setState({ showAnswer: !showAnswer })}
-            title={ showAnswer ? "View the question" : "View the answer" }
+            title={ showAnswer ? "View Question" : "Show Answer" }
             color="#3B48EE"
             accessibilityLabel="View the answer to the question"
           />
         <ButtonContainer>
           <AnswerButton onPress={() => {
-              this.setState({ 
-                currentQuestionIndex: currentQuestionIndex + 1,
-              })
-            }}>
+            this.incrementInCorrectAnswers()
+            if(!isLastQuestion) {
+              this.navigateToNextQuestion()
+            } 
+          }}>
             <ButtonText>Incorrect</ButtonText>
           </AnswerButton>
           <AnswerButton primary
             onPress={() => {
-              this.setState({ 
-                currentQuestionIndex: currentQuestionIndex + 1,
-                correctAnswers: correctAnswers + 1 
-              })
-            }}>
+              this.incrementCorrectAnswers()
+              if(!isLastQuestion) {
+                this.navigateToNextQuestion()
+              } 
+          }}>
             <ButtonText>Correct</ButtonText>
           </AnswerButton>
         </ButtonContainer>
@@ -61,7 +118,6 @@ export default class Quiz extends Component {
     )
   }
 }
-
 
 // Styled Components
 const MainContainer = styled.View`
