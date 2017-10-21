@@ -5,8 +5,9 @@ import styled from 'styled-components/native'
 import { View, Text, TouchableOpacity, Button } from 'react-native'
 
 // Our Components
-import Header from '../../components/Header'
+import Home from '../Home'
 import QuizComplete from '../QuizComplete'
+import Header from '../../components/Header'
 
 export default class Quiz extends Component {
   state = {
@@ -37,6 +38,8 @@ export default class Quiz extends Component {
       component: QuizComplete,
       title: "Quiz Completed",
       leftButtonTitle: ' ',
+      rightButtonIcon: require('./images/deck.png'),
+      onRightButtonPress: () => navigator.popToTop(),
       passProps: { 
         deck,
         score,
