@@ -23,6 +23,8 @@
   <img src="docs/images/expo-barcode.png" alt="Expo Barcode" height="300px" />
 </div>
 
+<br />
+
 ## Getting Started
 
 ```sh
