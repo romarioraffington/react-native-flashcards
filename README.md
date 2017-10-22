@@ -4,12 +4,18 @@
 <div align="center"> A mobile <strong>iOS</strong> application that allows users to study collections of flashcards. Users can create different categories of flashcards called decks, add flashcards to those decks, then take quizzes on those decks. </div>
 
 <br />
+
+<div align="center">
+  <a href="https://circleci.com/gh/romarioraffington/react-native-flashcards">
+    <img src="https://circleci.com/gh/romarioraffington/react-native-flashcards.svg?style=svg" alt="Build Status" />
+  </a>
+</div>
+
 <br />
 
 <div align="center">
-    <img src="docs/images/screenshot.png" alt="App Screenshot" height="500px" />
+  <img src="docs/images/screenshot.png" alt="App Screenshot" height="500px" />
 </div>
-
 
 ## Getting Started
 
