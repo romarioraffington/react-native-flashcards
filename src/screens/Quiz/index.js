@@ -8,6 +8,7 @@ import { View, Text, TouchableOpacity, Button } from 'react-native'
 import Home from '../Home'
 import QuizComplete from '../QuizComplete'
 import Header from '../../components/Header'
+import { clearLocalNotification, setLocalNotification } from '../../util/notifications'
 
 export default class Quiz extends Component {
   state = {
@@ -33,6 +34,11 @@ export default class Quiz extends Component {
         lastQuizTaken: deck.title ,
         lastScore: score,
       })
+
+      // Cancel any pending quiz reminders
+      // And set a new one for tomorrow
+      clearLocalNotification()
+        .then(setLocalNotification)
 
       // Navigate to QuizComplete Screen
       this.navigateToQuizComplete(score)
