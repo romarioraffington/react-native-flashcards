@@ -3,7 +3,6 @@
     "name": "Flashcards",
     "sdkVersion": "21.0.0",
     "description": "A mobile iOS application that allows users to study collections of flashcards",
-    "slug": "expo.io/@romario/flashcards",
     "version": 0.1,
     "orientation": "portrait",
     "icon": "docs/images/icon-48.png",
