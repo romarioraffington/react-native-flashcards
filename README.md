@@ -17,6 +17,12 @@
   <img src="docs/images/screenshot.png" alt="App Screenshot" height="500px" />
 </div>
 
+<br />
+
+<div align="center">
+  <img src="docs/images/expo-barcode.png" alt="Expo Barcode" height="300px" />
+</div>
+
 ## Getting Started
 
 ```sh
