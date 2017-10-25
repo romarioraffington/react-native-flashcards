@@ -88,12 +88,16 @@ export default class Quiz extends Component {
       correctAnswers, 
       incorrectAnswers,
     } = this.state
-
+    
     // Grab variables to display
     const questionsLength = deck.questions.length
-    const currentQuestion = deck.questions[currentQuestionIndex].question
-    const currentAnswer = deck.questions[currentQuestionIndex].answer
     const currentQuestionNumber = currentQuestionIndex + 1
+
+    const { 
+      question: currentQuestion,
+      answer: currentAnswer, 
+    } = deck.questions[currentQuestionIndex]
+
 
     // Determine if we are at
     // the last question
