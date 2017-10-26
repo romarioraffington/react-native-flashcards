@@ -92,12 +92,7 @@ export default class Quiz extends Component {
     // Grab variables to display
     const questionsLength = deck.questions.length
     const currentQuestionNumber = currentQuestionIndex + 1
-
-    const { 
-      question: currentQuestion,
-      answer: currentAnswer, 
-    } = deck.questions[currentQuestionIndex]
-
+    const { question, answer } = deck.questions[currentQuestionIndex]
 
     // Determine if we are at
     // the last question
@@ -109,7 +104,7 @@ export default class Quiz extends Component {
         <QuestionCountText>{currentQuestionNumber} / {questionsLength}</QuestionCountText>
         <QuestionContainer>
           <HeaderText>
-            { showAnswer ? currentAnswer: currentQuestion}
+            { showAnswer ? answer: question}
           </HeaderText>
           <ViewAnswerButton
             onPress={() => this.setState({ showAnswer: !showAnswer })}
