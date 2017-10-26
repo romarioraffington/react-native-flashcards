@@ -7,8 +7,8 @@ import { View, Text, TouchableOpacity, Button } from 'react-native'
 // Our Components
 import Home from '../Home'
 import QuizComplete from '../QuizComplete'
-import Header from '../../components/Header'
-import { clearLocalNotification, setLocalNotification } from '../../util/notifications'
+import Header from 'components/Header'
+import { clearLocalNotification, setLocalNotification } from 'util/notifications'
 
 export default class Quiz extends Component {
   state = {

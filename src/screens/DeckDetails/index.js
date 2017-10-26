@@ -10,11 +10,11 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import Home from '../Home'
 import AddCard from '../AddCard'
 import Quiz from '../Quiz'
-import Header from '../../components/Header' 
+import Header from 'components/Header' 
 
 // Our Actions
-import { saveCard } from '../../models/Deck/actions'
-import { saveStatus } from '../../models/Status/actions'
+import { saveCard } from 'models/Deck/actions'
+import { saveStatus } from 'models/Status/actions'
 
 class DeckDetails extends Component {
 

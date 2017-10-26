@@ -5,7 +5,7 @@ import { View, FlatList } from 'react-native'
 
 // Our Components
 import Deck from './components/Deck'
-import AddDeck from '../../screens/AddDeck'
+import AddDeck from 'screens/AddDeck'
 
 export default ({ decks, navigator }) => (
   <Container>

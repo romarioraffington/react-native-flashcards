@@ -5,7 +5,7 @@ import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 
 // Our Components
 import Home from '../Home'
-import Header from '../../components/Header' 
+import Header from 'components/Header' 
 
 export default class AddCard extends Component {
   state = {

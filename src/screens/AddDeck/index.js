@@ -6,7 +6,7 @@ import { SimpleLineIcons } from '@expo/vector-icons'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 
 // Our Components
-import Header from '../../components/Header'
+import Header from 'components/Header'
 
 export default class AddDeck extends Component {
   state = {

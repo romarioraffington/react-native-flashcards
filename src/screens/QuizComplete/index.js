@@ -6,7 +6,7 @@ import { View, Text, TouchableOpacity, Button } from 'react-native'
 // Our Components
 import Quiz from '../Quiz'
 import DeckDetails from '../DeckDetails'
-import Header from '../../components/Header'
+import Header from 'components/Header'
 
 export default class QuizComplete extends Component {
   render() {

@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import styled from 'styled-components/native'
 
 // Our Components
-import DeckDetails from '../../../../screens/DeckDetails'
+import DeckDetails from 'screens/DeckDetails'
 
 export default ({ deck, navigator }) => (
   <Deck onPress={() => navigator.push({ 

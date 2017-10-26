@@ -7,8 +7,8 @@ import styled from 'styled-components/native'
 
 // Our Dependencies
 import store from './src/store'
-import Router from './src/components/Router'
-import { setLocalNotification, listenForNotifications } from './src/util/notifications'
+import Router from 'components/Router'
+import { setLocalNotification, listenForNotifications } from 'util/notifications'
 
 export default class App extends Component {
 
